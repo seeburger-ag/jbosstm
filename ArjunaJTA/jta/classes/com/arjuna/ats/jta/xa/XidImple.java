@@ -49,7 +49,7 @@ import com.arjuna.ats.jta.logging.jtaLogger;
 
 /**
  * Implementation of javax.transaction.xa.Xid.
- * 
+ *
  * @author Mark Little (mark@arjuna.com)
  * @version $Id: XidImple.java 2342 2006-03-30 13:06:17Z $
  * @since JTS 1.2.4.
@@ -67,7 +67,7 @@ public class XidImple implements javax.transaction.xa.Xid, Serializable {
 		_theXid = null;
 
 		copy(xid);
-		
+
 		hashCode = getHash(_theXid) ;
 	}
 
@@ -83,9 +83,6 @@ public class XidImple implements javax.transaction.xa.Xid, Serializable {
 		XATxConverter.setEisName(_theXid, eisName);
 	}
 
-	/**
-	 * @deprecated This is only used by test code
-	 */
 	public XidImple(Uid id) {
 		this(id, false, null);
 	}
@@ -187,16 +184,23 @@ public class XidImple implements javax.transaction.xa.Xid, Serializable {
 				_theXid.formatID = xid.getFormatId();
 
 				byte[] gtx = xid.getGlobalTransactionId();
+				final int gtxlength = (gtx == null ? 0 : gtx.length);
+				// DEBUG
+				if (gtx == null) {
+				    jtaLogger.logger.debug("gtx was null for XID=" + xid);
+				}
+
 				byte[] bql = xid.getBranchQualifier();
 				final int bqlength = (bql == null ? 0 : bql.length);
 
-				_theXid.gtrid_length = gtx.length;
+				_theXid.gtrid_length = gtxlength;
 				_theXid.bqual_length = bqlength;
 
-				System.arraycopy(gtx, 0, _theXid.data, 0, gtx.length);
+				if (gtxlength > 0) {
+				    System.arraycopy(gtx, 0, _theXid.data, 0, gtxlength);
+				}
 				if (bqlength > 0) {
-					System.arraycopy(bql, 0, _theXid.data, gtx.length,
-							bql.length);
+					System.arraycopy(bql, 0, _theXid.data, gtxlength, bqlength);
 				}
 			}
 		}
@@ -338,7 +342,7 @@ public class XidImple implements javax.transaction.xa.Xid, Serializable {
 
 	/**
 	 * Is the specified object equal to this one?
-	 * 
+	 *
 	 * @param obj
 	 *            The object to test.
 	 * @return true if they are equal, false otherwise.
@@ -352,7 +356,7 @@ public class XidImple implements javax.transaction.xa.Xid, Serializable {
 
 	/**
 	 * Return the hash code for this Xid.
-	 * 
+	 *
 	 * @return the hash code.
 	 */
 	public int hashCode() {
@@ -361,7 +365,7 @@ public class XidImple implements javax.transaction.xa.Xid, Serializable {
 
 	/**
 	 * Generate the hash code for the xid.
-	 * 
+	 *
 	 * @param xid
 	 *            The xid.
 	 * @return The hash code.
@@ -377,7 +381,7 @@ public class XidImple implements javax.transaction.xa.Xid, Serializable {
 
 	/**
 	 * Generate a hash code for the specified bytes.
-	 * 
+	 *
 	 * @param hash
 	 *            The initial hash.
 	 * @param bytes
