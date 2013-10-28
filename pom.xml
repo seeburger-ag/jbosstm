@@ -16,7 +16,7 @@
                         <phase>generate-sources</phase>
                         <configuration>
                             <tasks>
-                                <ant antfile="${basedir}/build.xml">
+                                <ant antfile="${basedir}/build.xml" inheritRefs="true">
                                     <target name="jbossjts" />
                                 </ant>
                             </tasks>
