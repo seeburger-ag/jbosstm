@@ -17,7 +17,7 @@
                         <configuration>
                             <tasks>
                                 <ant antfile="${basedir}/build.xml">
-                                    <target name="run-Ant-via-Maven" />
+                                    <target name="jbossjts" />
                                 </ant>
                             </tasks>
                         </configuration>
