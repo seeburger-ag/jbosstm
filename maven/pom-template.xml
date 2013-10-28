@@ -446,6 +446,13 @@
             <scope>provided</scope>
         </dependency>
 
+        <!-- Added to not rely on includeAntRuntime in sharedbuild.xml -->
+        <dependency>
+            <groupId>org.apache.ant</groupId>
+            <artifactId>ant</artifactId>
+            <version>1.8.2</version>
+        </dependency>
+
 
     </dependencies>
 
