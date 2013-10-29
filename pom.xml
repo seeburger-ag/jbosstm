@@ -6,6 +6,10 @@
     <groupId>com.seeburger.as</groupId>
     <version>1.0-SNAPSHOT</version>
 
+    <properties>
+        <antTarget>jbossjts</antTarget>
+    </properties>
+
     <build>
         <plugins>
             <plugin>
@@ -17,7 +21,7 @@
                         <configuration>
                             <tasks>
                                 <ant antfile="${basedir}/build.xml">
-                                    <target name="jbossjts" />
+                                    <target name="${antTarget}" />
                                 </ant>
                             </tasks>
                         </configuration>
