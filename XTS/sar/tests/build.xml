@@ -79,7 +79,7 @@
   <!-- compile the XTSTestService -->
 
     <target name="compile" depends="init">
-    <javac srcdir="${src.dir}" destdir="${build.classes.dir}" debug="yes">
+    <javac srcdir="${src.dir}" destdir="${build.classes.dir}" debug="yes" fork="true">
         <classpath>
             <fileset dir="${xts.lib.dir}" includes="${xts.lib.jars}"/>
             <fileset dir="${jbossts.build.extlib.dir}" includes="${jbossts.build.extlib.jars}"/>
@@ -94,7 +94,7 @@
       <copy toDir="${build.classes.dir}/" file="${dd.dir}/context-handlers.xml"/>
       <copy toDir="${build.classes.dir}/org/jboss/jbossts/xts/servicetests/service/" file="${dd.dir}/handlers.xml"/>
       <copy toDir="${build.classes.dir}/org/jboss/jbossts/xts/servicetests/service/subordinate" file="${dd.dir}/subordinatehandlers.xml"/>
-	 <war warfile="${build.webapps.dir}/xtstest.war" webxml="${web.inf.dir}/web.xml" manifest="${build.meta.inf.dir}/manifest.mf"> 
+	 <war warfile="${build.webapps.dir}/xtstest.war" webxml="${web.inf.dir}/web.xml" manifest="${build.meta.inf.dir}/manifest.mf">
          <classes dir="${build.classes.dir}" includes="**/*"/>
          <webinf dir="${dd.dir}">
 		 	<include name="wsdl/**"/>

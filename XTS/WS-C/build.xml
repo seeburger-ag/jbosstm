@@ -165,7 +165,7 @@
 
     <!-- this assumes the required libs have already been built -->
     <target name="tests-compile">
-        <javac destdir="${tests.build.classes.dir}" debug="${debug}" deprecation="${deprecation}">
+        <javac destdir="${tests.build.classes.dir}" debug="${debug}" deprecation="${deprecation}" fork="true">
             <classpath>
                 <pathelement path="${build.lib.dir}/ws-c.jar"/>
                 <pathelement path="${build.lib.dir}/ws-c-api.jar"/>
@@ -208,7 +208,7 @@
 
     <!-- production target for tests -->
     <target name="tests" depends="tests-ear"/>
-    
+
     <target name="tests-deploy" depends="tests-ear, tests-undeploy">
         <copy file="${tests.build.webapps.dir}/ws-c-tests.ear" tofile="${deploy.dir}/ws-c-tests.ear"/>
     </target>

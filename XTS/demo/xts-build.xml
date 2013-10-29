@@ -137,7 +137,7 @@
 
     <target name="compile" depends="init">
         <javac destdir="${build.dir}/classes" debug="${javac.debug}"
-            optimize="${javac.optimize}" deprecation="${javac.deprecation}" >
+            optimize="${javac.optimize}" deprecation="${javac.deprecation}" fork="true">
             <classpath>
                 <path refid="compile.path"/>
             </classpath>

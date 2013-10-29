@@ -164,10 +164,10 @@
 		<mkdir dir="${tests.build.webapps.dir}"/>
 		<mkdir dir="${tests.build.lib.dir}"/>
 	</target>
-    
+
     <!-- this assumes the required libs have already been built-->
 	<target name="tests.compile11">
-	  <javac destdir="${tests.build.classes.dir}" debug="yes" optimize="no">
+	  <javac destdir="${tests.build.classes.dir}" debug="yes" optimize="no" fork="true">
 	    <classpath>
 	      <pathelement path="${build.lib.dir}/${modulename}.jar"/>
           <pathelement path="${build.lib.dir}/${modulename}11.jar"/>
