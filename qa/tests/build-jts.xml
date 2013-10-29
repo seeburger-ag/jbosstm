@@ -191,7 +191,8 @@
 		<javac srcdir="${org.jboss.jbossts.qa.build.idl}"
 			   destdir="${org.jboss.jbossts.qa.build.classes}"
 			   debug="on"
-               includeantruntime="false">
+               includeantruntime="false"
+		       fork="true">
 
 			<classpath>
 				<path refid="jts.classpath"/>
@@ -205,7 +206,8 @@
 		<javac srcdir="${org.jboss.jbossts.qa.src}"
 			   destdir="${org.jboss.jbossts.qa.build.classes}"
 			   debug="on" deprecation="on"
-               includeantruntime="false">
+               includeantruntime="false"
+		       fork="true">
 
 			<exclude name="org/jboss/jbossts/qa/ArjunaCore/Common/ClassPathParserTest.java" />
 
@@ -240,7 +242,8 @@
         <javac srcdir="${org.jboss.jbossts.qa.src}"
                destdir="${org.jboss.jbossts.qa.build.classes}"
                debug="on" deprecation="on"
-               includeantruntime="true">
+               includeantruntime="true"
+               fork="true">
             <include name="**/${astest.dir}/**/*.java" />
             <classpath>
                 <path refid="as.classpath"/>
