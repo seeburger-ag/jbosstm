@@ -86,7 +86,7 @@
     <condition property="isMacOS">
         <os family="mac"/>
     </condition>
-    
+
     <target name="path-init-mac" if="${isMacOS}">
         <path id="byteman.lib" >
             <pathelement location="${byteman.dir}/byteman.jar" />
@@ -104,7 +104,7 @@
             <pathelement location="${java.home}/../Classes/jconsole.jar"/>
         </path>
     </target>
-    
+
     <target name="path-init" unless="${isMacOS}">
         <path id="byteman.lib" >
             <pathelement location="${byteman.dir}/byteman.jar" />
@@ -144,6 +144,9 @@
     </target>
 
     <target name="compile" depends="init">
+        <!-- DEBUG -->
+        <echoproperties/>
+
         <compile.macro/>
     </target>
 
@@ -207,6 +210,9 @@
    </macrodef>
 
     <target name="compile-tests" depends="compile">
+        <!-- DEBUG -->
+        <echoproperties/>
+
         <compile-tests.macro/>
     </target>
 
