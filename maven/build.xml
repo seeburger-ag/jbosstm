@@ -43,7 +43,7 @@
     <property name="ext.lib.src" value="../ext"/>
     <property name="ext.lib.dest" value="../build/extlib"/>
 
-    <property name="groupid" value="org.jboss.jbossts"/>
+    <property name="groupid" value="com.seeburger.as.jbossts"/>
     <property name="artifact" value="jbossts-build"/>
     <property name="version" value="unknown"/>
 
@@ -67,7 +67,7 @@
             <arg value="dependency:copy-dependencies"/>
         </exec>
     </target>
-    	
+
     <target name="maven">
         <!-- munge the pom template into an actual pom, then use it to install
             the dependencies into the dir where the build looks for them -->
@@ -95,7 +95,7 @@
         <condition property="osfamily-unix">
                 <os family="unix" />
         </condition>
-    	
+
     	<antcall target="maven-unix"/>
     	<antcall target="maven-windows"/>
 
