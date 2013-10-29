@@ -79,7 +79,7 @@
 			description="compile the source ">
 
 		<mkdir dir="${build}/classes"/>
-		<javac srcdir="${src}" destdir="${build}/classes" debug="true" includeantruntime="false">
+		<javac srcdir="${src}" destdir="${build}/classes" debug="true" includeantruntime="false" fork="true">
 			<classpath refid="build-prereqs"/>
             <!-- http://issues.jboss.org/jira/browse/LOGTOOL-23  -->
             <compilerarg value="-AtranslationFilesPath=${src}"/>
