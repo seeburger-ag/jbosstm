@@ -22,7 +22,7 @@
 
     <property name="modulename" value="buildsystem"/>
 
-    <property name="global.ext.libs" value="junit.jar"/>
+    <property name="global.ext.libs" value="junit.jar,ant.jar"/>
 
     <import file="../sharedbuild.xml"/>
 

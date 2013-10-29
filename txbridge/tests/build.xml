@@ -10,11 +10,13 @@
 	<property name="standalone.xts.conf.path" value="${jboss.home}/standalone/configuration/standalone-xts.xml"/>
 
     <target name="clean">
+        <!--
         <mvn.macro>
             <mvn.args>
                 <arg value="clean"/>
             </mvn.args>
         </mvn.macro>
+        -->
     </target>
 
     <target name="dist" depends="clean">

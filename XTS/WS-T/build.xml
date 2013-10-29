@@ -282,7 +282,7 @@
 
     <!-- this assumes all the required libs have been built -->
     <target name="tests-compile">
-        <javac destdir="${tests.build.classes.dir}" debug="${javac.debug}" optimize="${javac.optimize}">
+        <javac destdir="${tests.build.classes.dir}" debug="${javac.debug}" optimize="${javac.optimize}" fork="true">
             <classpath>
                 <pathelement path="${build.lib.dir}/ws-t.jar"/>
                 <pathelement path="${build.lib.dir}/ws-t-api.jar"/>

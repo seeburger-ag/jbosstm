@@ -212,7 +212,7 @@
 
     <!-- this assumes all the rwuired libs have been built -->
     <target name="tests.compile" depends="tests.init">
-      <javac destdir="${tests.build.classes.dir}" debug="yes" optimize="no">
+      <javac destdir="${tests.build.classes.dir}" debug="yes" optimize="no" fork="true">
         <classpath>
             <pathelement path="${build.lib.dir}/${modulename}.jar"/>
             <pathelement path="${build.lib.dir}/${modulename}-api.jar"/>

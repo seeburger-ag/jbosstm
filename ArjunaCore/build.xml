@@ -120,7 +120,7 @@
 
         <mkdir dir="${build.dir}/services"/>
         <javac srcdir="arjuna/services/classes" destdir="${build.dir}/services" debug="${debug}"
-               deprecation="${deprecation}" includeantruntime="false">
+               deprecation="${deprecation}" includeantruntime="false" fork="true">
             <classpath>
                 <fileset dir="arjuna/build/lib" includes="arjuna.jar"/>
                 <fileset dir="." includes="${lib.dir}/ext/*"/>

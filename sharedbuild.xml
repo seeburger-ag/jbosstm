@@ -86,7 +86,7 @@
     <condition property="isMacOS">
         <os family="mac"/>
     </condition>
-    
+
     <target name="path-init-mac" if="${isMacOS}">
         <path id="byteman.lib" >
             <pathelement location="${byteman.dir}/byteman.jar" />
@@ -104,7 +104,7 @@
             <pathelement location="${java.home}/../Classes/jconsole.jar"/>
         </path>
     </target>
-    
+
     <target name="path-init" unless="${isMacOS}">
         <path id="byteman.lib" >
             <pathelement location="${byteman.dir}/byteman.jar" />
@@ -218,7 +218,7 @@
         <mkdir dir="${build.dir}/tests"/>
 
         <javac srcdir="${tests.dir}" destdir="${build.dir}/tests" debug="${debug}" includeantruntime="false"
-               deprecation="${deprecation}" excludes="${excluded.test.classes}">
+               deprecation="${deprecation}" excludes="${excluded.test.classes}" fork="true">
             <classpath>
                 <pathelement location="${build.dir}/classes"/>
                 <fileset dir="${build.dir}/lib/ext/" includes="*"/>

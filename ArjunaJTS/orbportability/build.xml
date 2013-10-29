@@ -22,6 +22,8 @@
 
     <property name="modulename" value="orbportability"/>
 
+    <property name="global.ext.libs" value="ant.jar"/>
+
     <import file="../sharedbuild.xml"/>
 
     <target name="init" depends="sharedbuild.init">

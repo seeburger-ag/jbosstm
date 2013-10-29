@@ -134,9 +134,9 @@
 	</target>
 
     <!-- this assumes the required libs have already been built -->
-    
+
 	<target name="tests.compile" depends="tests.init">
-	  <javac destdir="${tests.build.classes.dir}" debug="yes" optimize="no">
+	  <javac destdir="${tests.build.classes.dir}" debug="yes" optimize="no" fork="true">
 	    <classpath>
 	      <pathelement path="${build.lib.dir}/${modulename}.jar"/>
 	      <path refid="tests.lib.path"/>
