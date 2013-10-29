@@ -18,6 +18,8 @@
 	<classpathentry kind="src" path="atsintegration/classes"/>
 	<classpathentry kind="src" path="ArjunaJTS/jts/classes"/>
 	<classpathentry kind="src" path="atsintegration/tests/classes"/>
+	<classpathentry kind="src" path="antbuildsystem/classes"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/jboss-logging"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
