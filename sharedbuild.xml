@@ -144,9 +144,6 @@
     </target>
 
     <target name="compile" depends="init">
-        <!-- DEBUG -->
-        <echoproperties/>
-
         <compile.macro/>
     </target>
 
@@ -210,9 +207,6 @@
    </macrodef>
 
     <target name="compile-tests" depends="compile">
-        <!-- DEBUG -->
-        <echoproperties/>
-
         <compile-tests.macro/>
     </target>
 
