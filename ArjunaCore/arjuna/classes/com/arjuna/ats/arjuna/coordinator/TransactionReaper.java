@@ -146,6 +146,7 @@ public class TransactionReaper
             }
 
             tsLogger.i18NLogger.warn_coordinator_TransactionReaper_18(reaperElement._control.get_uid(), reaperElement.statusName());
+            tsLogger.logger.warn("Reaping element: "+  reaperElement._control.get_uid() + " with status: " + reaperElement.statusName() + ", timeout: " + reaperElement._timeout + ", absolute timout:" + reaperElement.getAbsoluteTimeout());
 
             // if we have to synchronize on multiple objects we always
             // do so in a fixed order ReaperElement before Reaper and
@@ -737,7 +738,7 @@ public class TransactionReaper
     // cheaper than locking to recalculate the new time here.
     private final void removeElementClient(ReaperElement reaperElement)
     {
-        _reaperElements.remove(reaperElement);        
+        _reaperElements.remove(reaperElement);
         _timeouts.remove(reaperElement._control);
 
         // don't recalc time, just wake up as planned
