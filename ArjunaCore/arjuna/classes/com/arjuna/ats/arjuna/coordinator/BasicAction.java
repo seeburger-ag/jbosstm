@@ -767,7 +767,7 @@ public class BasicAction extends StateManager
         try
         {
             packHeader(os, new Header(get_uid(), Utility.getProcessUid()));
-            
+
             os.packBoolean(pastFirstParticipant);
         }
         catch (IOException e)
@@ -1077,7 +1077,7 @@ public class BasicAction extends StateManager
             Header hdr = new Header();
 
             unpackHeader(os, hdr);
-            
+
             pastFirstParticipant = os.unpackBoolean();
         }
         catch (IOException e)
@@ -2667,8 +2667,6 @@ public class BasicAction extends StateManager
     {
         if ((rl != null) && (rl.size() > 0))
         {
-            AbstractRecord rec;
-
             /*
              * Ensure that HornetQ XAResources are committed at last.
              * This prevents, that a jms message triggers a new processing
@@ -2680,13 +2678,21 @@ public class BasicAction extends StateManager
             int elements = rl.size();
             while (elements > 0)
             {
-                rec = rl.getFront();
+                final AbstractRecord rec = rl.getFront();
                 if (null != rec)
                 {
-                    if (rec.value().getClass().getName().startsWith("org.hornetq") ||
-                        rec.toString().toLowerCase().contains("hornetq"))
+                    final Object value = rec.value();
+                    if (value != null)
                     {
-                        orderedList.putRear(rec);
+                        if (value.getClass().getName().startsWith("org.hornetq") ||
+                            rec.toString().toLowerCase().contains("hornetq"))
+                        {
+                            orderedList.putRear(rec);
+                        }
+                        else
+                        {
+                            orderedList.putFront(rec);
+                        }
                     }
                     else
                     {
@@ -2695,6 +2701,8 @@ public class BasicAction extends StateManager
                 }
                 elements--;
             }
+
+            AbstractRecord rec;
             while (((rec = orderedList.getFront()) != null))
             {
                 int outcome = doCommit(reportHeuristics, rec);
