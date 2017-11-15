@@ -2663,6 +2663,8 @@ public class BasicAction extends StateManager
     {
         if ((rl != null) && (rl.size() > 0))
         {
+            boolean pastFirstParticipant = false;
+
             /*
              * Ensure that HornetQ XAResources are committed at last.
              * This prevents, that a jms message triggers a new processing
