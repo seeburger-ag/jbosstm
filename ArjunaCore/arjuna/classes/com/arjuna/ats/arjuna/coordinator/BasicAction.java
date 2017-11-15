@@ -2672,13 +2672,11 @@ public class BasicAction extends StateManager
              * This prevents, that a jms message triggers a new processing
              * while an update to the database is still not committed.
              * see [bug#71961]
-             *
              */
             RecordList orderedList = new RecordList();
-            int elements = rl.size();
-            while (elements > 0)
+            for (int elements = rl.size(); elements > 0; elements--)
             {
-                final AbstractRecord rec = rl.getFront();
+                final AbstractRecord rec = rl.getRear();
                 if (null != rec)
                 {
                     final Object value = rec.value();
@@ -2699,7 +2697,6 @@ public class BasicAction extends StateManager
                         orderedList.putFront(rec);
                     }
                 }
-                elements--;
             }
 
             AbstractRecord rec;
