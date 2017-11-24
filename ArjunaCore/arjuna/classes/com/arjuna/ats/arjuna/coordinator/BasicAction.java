@@ -2696,9 +2696,15 @@ public class BasicAction extends StateManager
                     }
                 }
             }
+            
+            // ordering above, consumes entries from the list.
+            // reset the preparedList, because it will be used again in phase2abort
+            //see also [bug#77664]
+            preparedList = orderedList;
+
 
             AbstractRecord rec;
-            while (((rec = orderedList.getFront()) != null))
+            while (((rec = preparedList.getFront()) != null))
             {
                 int outcome = doCommit(reportHeuristics, rec);
 

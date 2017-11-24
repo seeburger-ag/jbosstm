@@ -485,25 +485,32 @@ public class XAResourceRecord extends AbstractRecord
 						case XAException.XA_RBTIMEOUT:
 						case XAException.XA_RBTRANSIENT:
 						case XAException.XAER_RMERR:
-	                                        case XAException.XAER_PROTO:  // XA spec implies rollback
+						case XAException.XAER_PROTO:  // XA spec implies rollback
 							return TwoPhaseOutcome.HEURISTIC_ROLLBACK;
 						case XAException.XA_HEURMIX:
 							return TwoPhaseOutcome.HEURISTIC_MIXED;
 						case XAException.XAER_NOTA:
 						    if (_recovered)
-							break; // committed previously and recovery completed
+						    	break; // committed previously and recovery completed
 						    else
 						        return TwoPhaseOutcome.HEURISTIC_HAZARD;  // something terminated the transaction!
 						case XAException.XA_RETRY:
 						case XAException.XAER_RMFAIL:
-						    _committed = true;  // will cause log to be rewritten
+							// Changed to return HEURISTIC_ROLLBACK, which will rollback further XARessources instead of 
+							// committing them.
+							// Better to have all or nothing.
+							// see [bug#77664]
+							return TwoPhaseOutcome.HEURISTIC_ROLLBACK;
+
+							
+//						    _committed = true;  // will cause log to be rewritten
 						    
-	                                            /*
-                                                     * Could do timeout retry here, but that could cause other resources in the list to go down the
-                                                     * heuristic path (some are far too keen to do this). Fail and let recovery retry. Meanwhile
-                                                     * the coordinator will continue to commit the other resources immediately.
-                                                     */
-							return TwoPhaseOutcome.FINISH_ERROR;
+							/*
+                            * Could do timeout retry here, but that could cause other resources in the list to go down the
+                            * heuristic path (some are far too keen to do this). Fail and let recovery retry. Meanwhile
+                            * the coordinator will continue to commit the other resources immediately.
+                            */
+//							return TwoPhaseOutcome.FINISH_ERROR;
 						case XAException.XAER_INVAL: // resource manager failed, did it rollback?
 						default:
 							return TwoPhaseOutcome.HEURISTIC_HAZARD;
