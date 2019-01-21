@@ -2681,7 +2681,8 @@ public class BasicAction extends StateManager
                     if (value != null)
                     {
                         if (value.getClass().getName().startsWith("org.hornetq") ||
-                            rec.toString().toLowerCase().contains("hornetq"))
+                            rec.toString().toLowerCase().contains("hornetq") ||
+                            rec.value().toString().toLowerCase().contains("hornetq"))
                         {
                             orderedList.putRear(rec);
                         }
@@ -2696,7 +2697,7 @@ public class BasicAction extends StateManager
                     }
                 }
             }
-            
+
             // ordering above, consumes entries from the list.
             // reset the preparedList, because it will be used again in phase2abort
             //see also [bug#77664]
